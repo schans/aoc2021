@@ -3,25 +3,23 @@
 import fileinput
 
 # counters
-incr = 0
-incrsum = 0
+c_incr = 0
+c_isum = 0
 
 # store prev values
-prevsum = None
+psum = None
 prev = None
-prevprev = None
+pprev = None
 for line in fileinput.input():
     cur = int(line.strip())
-    if prev:
-        if cur > prev:
-            incr += 1
-    if prevprev:
-        sum = cur + prev + prevprev
-        if prevsum:
-            if sum > prevsum:
-                incrsum += 1
-        prevsum = sum
-    prevprev = prev
+    if prev and cur > prev:
+        c_incr += 1
+    if pprev:
+        csum = cur + prev + pprev
+        if psum and csum > psum:
+            c_isum += 1
+        psum = csum
+    pprev = prev
     prev = cur
 
-print(f"Increases: {incr} Sum increases: {incrsum}")
+print(f"Increases: {c_incr} Sum increases: {c_isum}")
