@@ -17,7 +17,7 @@ for line in fileinput.input():
                 boards.append(board)
             board = list()
         else:
-            nums = [int(i) for i in cur.split(" ") if i != ""]
+            nums = [int(i) for i in cur.split()]
             board.extend(nums)
 # append last board
 boards.append(board)
