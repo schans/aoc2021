@@ -11,38 +11,23 @@ for line in fileinput.input():
     [x1, y1] = [int(i) for i in p1.split(",")]
     [x2, y2] = [int(i) for i in p2.split(",")]
 
-    if x1 < x2:
-        xr = range(x1, x2+1)
-    else:
-        xr = range(x1, x2-1, -1)
-    if y1 < y2:
-        yr = range(y1, y2+1)
-    else:
-        yr = range(y1, y2-1, -1)
+    # uncomment for day1
+    # if x1 != x2 and y1 != y2:
+    #     # diag
+    #     continue
 
-    if x1 == x2:
-        # vertical
-        for y in yr:
-            if (x1, y) in P:
-                P[(x1, y)] += 1
-            else:
-                P[(x1, y)] = 1
+    l = max(abs(x1-x2), abs(y1-y2))
+    dx = (x2 - x1) / l
+    dy = (y2 - y1) / l
 
-    elif y1 == y2:
-        # horizontal
-        for x in xr:
-            if (x, y1) in P:
-                P[(x, y1)] += 1
-            else:
-                P[(x, y1)] = 1
-    else:
-        # diagonal
-        # continue # uncomment for day1
-        for x, y in zip(xr, yr):
-            if (x, y) in P:
-                P[(x, y)] += 1
-            else:
-                P[(x, y)] = 1
+    x, y = x1, y1
+    for i in range(0, l+1):
+        if (x, y) in P:
+            P[(x, y)] += 1
+        else:
+            P[(x, y)] = 1
+        x += dx
+        y += dy
 
 vents = sum([1 for p in P if P[p] > 1])
 print(f"Vents: {vents}")
