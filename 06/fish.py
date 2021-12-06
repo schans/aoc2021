@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from pprint import pprint
 import fileinput
 
 # age buckets
