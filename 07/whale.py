@@ -11,15 +11,15 @@ for line in fileinput.input():
 def fuel(pos):
     f = 0
     for p, c in P.items():
-        f += (abs(p-pos)*c)
+        f += c * abs(p-pos)
     return f
 
 
 def fuel2(pos):
     f = 0
     for p, c in P.items():
-        d = (abs(p-pos)) + 1
-        f += int(c * (d * (d - 1) / 2))
+        d = abs(p-pos)
+        f += c * d * (d + 1) // 2
     return f
 
 
