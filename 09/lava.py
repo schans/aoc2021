@@ -2,7 +2,7 @@
 
 import fileinput
 from collections import Counter, defaultdict
-
+from math import prod
 
 M = 0
 L = defaultdict(int)
@@ -43,7 +43,6 @@ for i in range(rows):
                 # add to trail
                 w.add((k, l))
 
-t = [v for k, v in Counter(L).most_common(3)]
 
 print(f"Risk: ", sum([P[i][j]+1 for (i, j) in L.keys()]))
-print(f"Basin:", t[0]*t[1]*t[2])
+print(f"Basin:", prod([v for _, v in Counter(L).most_common(3)]))
