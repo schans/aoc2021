@@ -66,40 +66,34 @@ def reduce_single(wires):
     # print("single", wires)
 
 
-def get_value(str, wires):
-    trans = set()
-    for c in str:
-        trans.add(next(iter(wires[c])))
-    return N.index("".join(sorted(trans)))
-
-
 def calc_score(output, wires):
     s = 0
     m = 1000
     for o in output:
-        s += m * get_value(o, wires)
+        s += m * N.index("".join(sorted(map(wires.get, o))))
         m /= 10
     return int(s)
 
 
 def decode(input, output):
-    mapping = {}
     wires = {}
-
     check_freq(input, wires)
     check_len(input, wires)
     reduce_single(wires)
+
+    # verify and set-to-val
+    for j, k in wires.items():
+        assert(len(k) == 1)
+        wires[j] = next(iter(k))
 
     W.append(calc_score(output, wires))
 
 
 for line in fileinput.input():
     (input, output) = line.strip().split(" | ")
-    # print(input, "|", output)
 
     for o in output.split():
-        l = len(o)
-        if l == 2 or l == 4 or l == 3 or l == 7:
+        if len(o) in [2, 3, 4, 7]:
             T += 1
 
     decode(input.split(), output.split())
