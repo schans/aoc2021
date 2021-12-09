@@ -93,10 +93,6 @@ def decode(input, output):
     W.append(calc_score(output, wires))
 
 
-def is_valid(mapping):
-    return True
-
-
 for line in fileinput.input():
     (input, output) = line.strip().split(" | ")
     # print(input, "|", output)
