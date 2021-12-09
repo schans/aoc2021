@@ -6,10 +6,7 @@ from collections import Counter
 from collections import defaultdict
 
 
-# Counter({6: 3, 5: 3, 2: 1, 4: 1, 3: 1, 7: 1})
-# uniq len: 1:2, 4:4, 7:3, 8:7
 N = ['abcefg', 'cf', 'acdeg', 'acdfg', 'bcdf', 'abdfg', 'abdefg', 'acf', 'abcdefg', 'abcdfg']
-C = {'a', 'b', 'c', 'd', 'e', 'f', 'g'}
 
 # socres
 W = list()
