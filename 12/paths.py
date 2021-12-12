@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 
 import fileinput
+from collections import defaultdict
 
 paths = 0
-N = dict()
+N = defaultdict(list)
 for line in fileinput.input():
     (p, c) = line.strip().split('-')
-    if p not in N:
-        N[p] = list()
-    if c not in N:
-        N[c] = list()
     N[p].append(c)
     N[c].append(p)
 
