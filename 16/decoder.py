@@ -115,7 +115,5 @@ def parse_packet(code_bin):
 
 
 p, v = parse_packet(code_bin)
-
-
 print("Part 1:", VERSION_TOTAL)
 print("Part 2:", v)
