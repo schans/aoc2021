@@ -27,8 +27,7 @@ for line in fileinput.input():
                     if state == 'on':
                         C.add((x, y, z))
                     elif state == 'off':
-                        if (x, y, z) in C:
-                            C.remove((x, y, z))
+                        C.discard((x, y, z))
 
 
 def calc_line(y, z, idx):
