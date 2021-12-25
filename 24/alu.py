@@ -2,7 +2,9 @@
 
 import fileinput
 
-
+# The main insight is that 'z' register functions as a stack
+# by multiplying and modding wiht 26
+#
 # Manual rules decode (7 in total):
 # divs: 4, 7, 10, 11, 12, 13, 14
 #
