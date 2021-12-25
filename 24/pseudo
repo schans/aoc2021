@@ -1,0 +1,54 @@
+
+
+def round(inp, z, boxn1, boxn2):
+
+    x=z%26
+    z//=26
+    x+=boxn
+
+    if x == inp:
+        return 0
+    else:
+        z*=26
+        z+=(w+boxn2)
+        return z
+
+
+
+
+
+boxn1
+12
+11
+14
+-6
+15
+12
+-9
+14
+14
+-5
+-9
+-5
+-2
+-7
+
+
+
+
+
+boxn2
+4
+10
+12
+14
+6
+16
+1
+7
+8
+11
+8
+3
+1
+8
