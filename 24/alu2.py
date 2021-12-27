@@ -194,7 +194,6 @@ def try_nums(n, ranges, rules, i, F):
                 n[rule['idx1']] = n[rule['idx2']] + rule['a']
                 assert n[rule['idx1']] > 0
 
-            print(n)
             # Python (de)compiled code runs much faster
             # z = run_alu(n)
             z = run_code(n)
