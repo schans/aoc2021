@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 import fileinput
-# import sys
-# sys.setrecursionlimit(10_000)
+from heapq import heappop, heappush
 
 cost_min = 1e6
 
@@ -233,10 +232,34 @@ def get_moves(B, i):
     return []
 
 
+def solve(start, end):
+    # global cost_min
+    queue = [(0, start, -1)]
+    seen = set()
+    while queue:
+        cost, state, last = heappop(queue)
+
+        if state == end:
+            return cost
+
+        if state in seen:
+            continue
+        seen.add(state)
+
+        B = list(state)
+        movers = get_movers(B, last)
+        for n in movers:
+            moves = get_moves(B, n)
+            for m in moves:
+                BC = B.copy()
+                c = move(BC, n, m)
+                heappush(queue, (cost+c, tuple(BC), m))
+
+
 SEEN = set()
 
 
-def solve(B, cost, last):
+def solve_recursive(B, cost, last):
     global cost_min
 
     if cost >= cost_min:
@@ -258,10 +281,13 @@ def solve(B, cost, last):
         for m in moves:
             BC = B.copy()
             c = move(BC, n, m)
-            solve(BC, cost + c, m)  # the one in the dest is the one last moved
+            solve_recursive(BC, cost + c, m)  # the one in the dest is the one last moved
     return True
 
 
-solve(B, 0, None)
+start = tuple(B)
+end = tuple('.' * L + 'A' * ROWS + 'B' * ROWS + 'C' * ROWS + 'D' * ROWS)
+print("Answer:", solve(start, end))
 
-print(f"Answer: {cost_min}")
+# solve_recursive(B, 0, None)
+# print(f"Answer: {cost_min}")
