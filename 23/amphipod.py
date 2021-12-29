@@ -233,11 +233,18 @@ def get_moves(B, i):
     return []
 
 
+SEEN = set()
+
+
 def solve(B, cost, last):
     global cost_min
 
     if cost >= cost_min:
         return False
+
+    if (tuple(B), cost) in SEEN:
+        return False
+    SEEN.add((tuple(B), cost))
 
     if solved(B):
         print(f'Found solution with cost:', cost)
